@@ -78,6 +78,7 @@ while strcmp(i,'y') | strcmp(i,'Y')
     end
 end
 
+% Tolerance
 tol=10.^-4;
 disp(strcat('The default tolerance is: ', num2str(tol)));
 i='y';
@@ -91,3 +92,22 @@ while strcmp(i,'y') | strcmp(i,'Y')
         i='y';
     end
 end
+
+% Gauss-Seidel iterations
+err=Inf;
+zero=zeros(n, 1);
+inv_dl=inv(d+l);
+inv_dl_u=inv_dl*u;
+inv_dl_b=inv_dl*b;
+k=1;
+x(:,1)=x0;           % Initializing X
+while abs(err>=tol)~=zero  % Condition on error vs tolerance
+                                               % Finding X(k+1)
+    x(:,k+1)=-inv_dl_u*x(:, k) + inv_dl_b;     % Gauss-Seidel formula
+    err=x(:, k+1) - x(:, k);                   % Calculating error
+    k=k+1;
+end
+
+disp(strcat('Iterations: ', num2str(k-1)));
+disp('Solution vector for X:');
+disp(x(:, k));
