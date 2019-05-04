@@ -116,7 +116,6 @@ while cont  % Condition on error vs tolerance
     end
 end
 
-disp('');
 disp(strcat('Iterations performed: ', num2str(k-1)));
 disp('Solution vector for X:');
 disp(x(:, k));
