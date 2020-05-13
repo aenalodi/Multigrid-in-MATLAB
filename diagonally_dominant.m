@@ -9,7 +9,7 @@ for i=1:n
         d(i, j)=0;
         u(i, j)=0;
         l(i, j)=a(i, j);
-        sum=sum+a(i, j);
+        sum=sum+abs(a(i, j));
     end
     d(i, i)=a(i, i);
     u(i, i)=0;
@@ -18,9 +18,9 @@ for i=1:n
         d(i, j)=0;
         u(i, j)=a(i, j);
         l(i, j)=0;
-        sum=sum+a(i, j);
+        sum=sum+abs(a(i, j));
     end
-    if d(i, i)<sum
+    if abs(d(i, i))<sum
         diag=false;
     end
 end
